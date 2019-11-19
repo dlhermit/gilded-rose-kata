@@ -19,7 +19,7 @@ public class GildedRoseTest {
     public void updateQuality_NameDoesNotChange() {
         Item[] items = new Item[] { new Item("foo", 0, 0) };
         GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        app.updateQualityAndSellIn();
         assertEquals("foo", app.items[0].name);
     }
 
@@ -143,7 +143,7 @@ public class GildedRoseTest {
     private GildedRose buildAppAndUpdateQualityFor(Item[] items) {
         GildedRose app = new GildedRose(items);
 
-        app.updateQuality();
+        app.updateQualityAndSellIn();
 
         return app;
     }
