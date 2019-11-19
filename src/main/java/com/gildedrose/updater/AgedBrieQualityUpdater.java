@@ -1,8 +1,15 @@
 package com.gildedrose.updater;
 
-public class AgedBrieQualityUpdater extends BasicItemQualityUpdater {
+import com.gildedrose.Item;
+
+public class AgedBrieQualityUpdater extends AbstractItemQualityUpdater {
     @Override
-    protected int getBasicDecrement() {
-        return -1;
+    public int getBasicFactor(Item item) {
+        return 1;
+    }
+
+    @Override
+    public boolean qualityDropsToZeroWhenSellInNegative() {
+        return false;
     }
 }

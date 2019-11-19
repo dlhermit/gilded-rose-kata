@@ -2,23 +2,19 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class BackstagePassesQualityUpdater extends BasicItemQualityUpdater {
+public class BackstagePassesQualityUpdater extends AbstractItemQualityUpdater {
     @Override
-    public void updateQualityForUpdatedSellIn(Item item) {
-        if (sellInPositiveOrZero(item)) {
-            super.updateQualityForUpdatedSellIn(item);
-        } else {
-            item.quality = 0;
+    public int getBasicFactor(Item item) {
+        if (item.sellIn < 5) {
+            return 3;
+        } else if (item.sellIn < 10) {
+            return 2;
         }
+        return 1;
     }
 
     @Override
-    protected int getDecrement(Item item) {
-        if (item.sellIn < 5) {
-            return -3;
-        } else if (item.sellIn < 10) {
-            return -2;
-        }
-        return -1;
+    public boolean qualityDropsToZeroWhenSellInNegative() {
+        return true;
     }
 }
