@@ -108,7 +108,6 @@ public class GildedRoseTest {
     }
 
     @Test
-    // TODO: implement this
     public void updateQuality_QualityDegradesAsFastForConjuredItems() {
         GildedRose app = buildAppAndUpdateQualityFor(new Item(CONJURED_MANA_CAKE, 14, 20));
 
@@ -172,7 +171,7 @@ public class GildedRoseTest {
                 .forEach(index -> assertThat(app.items[index].name).isEqualTo(updatedItems[index].name));
     }
 
-    // TODO move to respective classes
+    // TODO move to test fixture
     private Item[] buildTestSet() {
         return new Item[] {
                 new Item(DEXTERITY_VEST, 10, 20), //
@@ -211,8 +210,10 @@ public class GildedRoseTest {
                 new Item(SULFURAS, -1, 80),
                 new Item(SULFURAS, 50, 80),
 
-                // this conjured item does not work properly yet
-//                new Item(CONJURED_MANA_CAKE, 3, 6)
+                new Item(CONJURED_MANA_CAKE, 3, 6),
+                new Item(CONJURED_MANA_CAKE, 0, 6),
+                new Item(CONJURED_MANA_CAKE, 3, 1),
+                new Item(CONJURED_MANA_CAKE, 0, 1)
         };
     }
 
@@ -254,8 +255,10 @@ public class GildedRoseTest {
                 new Item(SULFURAS, -1, 80),
                 new Item(SULFURAS, 50, 80),
 
-                // this conjured item does not work properly yet
-//                new Item(CONJURED_MANA_CAKE, 3, 6)
+                new Item(CONJURED_MANA_CAKE, 2, 4),
+                new Item(CONJURED_MANA_CAKE, -1, 2),
+                new Item(CONJURED_MANA_CAKE, 2, 0),
+                new Item(CONJURED_MANA_CAKE, -1, 0)
         };
     }
 

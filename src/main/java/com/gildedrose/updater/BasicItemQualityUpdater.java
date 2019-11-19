@@ -4,7 +4,7 @@ import com.gildedrose.Item;
 
 public class BasicItemQualityUpdater extends AbstractItemQualityUpdater {
     @Override
-    public int getBasicFactor(Item item) {
+    public int getBasicQualityUpdateFactor(Item item) {
         return -1;
     }
 

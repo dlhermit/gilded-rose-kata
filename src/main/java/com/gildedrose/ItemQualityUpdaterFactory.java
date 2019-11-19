@@ -10,6 +10,8 @@ public class ItemQualityUpdaterFactory {
             return new AgedBrieQualityUpdater();
         } else if (ItemNameChecker.isBackstagePass(item)) {
             return new BackstagePassesQualityUpdater();
+        } else if (ItemNameChecker.isConjuredItem(item)) {
+            return new ConjuredItemQualityUpdater();
         }
         return new BasicItemQualityUpdater();
     }

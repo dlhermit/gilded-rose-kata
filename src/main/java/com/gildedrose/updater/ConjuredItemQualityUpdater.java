@@ -2,10 +2,11 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class AgedBrieQualityUpdater extends AbstractItemQualityUpdater {
+public class ConjuredItemQualityUpdater extends AbstractItemQualityUpdater {
+
     @Override
     public int getBasicQualityUpdateFactor(Item item) {
-        return 1;
+        return -2;
     }
 
     @Override

@@ -10,10 +10,10 @@ public abstract class AbstractItemQualityUpdater implements ItemQualityUpdater {
     public final void updateQualityForUpdatedSellIn(Item item) {
         item.quality = qualityDropsToZero(item)
                 ? 0
-                : limit(item.quality + getBasicFactor(item) * getFactorForNegativeSellIn(item));
+                : limit(item.quality + getBasicQualityUpdateFactor(item) * getFactorForNegativeSellIn(item));
     }
 
-    public abstract int getBasicFactor(Item item);
+    public abstract int getBasicQualityUpdateFactor(Item item);
 
     public abstract boolean qualityDropsToZeroWhenSellInNegative();
 
