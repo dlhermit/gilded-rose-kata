@@ -2,15 +2,20 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public abstract class AbstractItemQualityUpdater implements ItemQualityUpdater {
+public abstract class AbstractItemUpdater implements ItemUpdater {
     private static final int MAX_QUALITY = 50;
     private static final int MIN_QUALITY = 0;
 
     @Override
     public final void updateQualityForUpdatedSellIn(Item item) {
-        item.quality = qualityDropsToZero(item)
+        item.quality = qualityDropsToZeroWhenSellNegative(item)
                 ? 0
-                : limit(item.quality + getBasicQualityUpdateFactor(item) * getFactorForNegativeSellIn(item));
+                : limit(item.quality + getBasicQualityUpdateFactor(item) * oneOrTwoIfSellInNegative(item));
+    }
+
+    @Override
+    public final void updateSellIn(Item item) {
+        decreaseSellIn(item);
     }
 
     public abstract int getBasicQualityUpdateFactor(Item item);
@@ -21,15 +26,19 @@ public abstract class AbstractItemQualityUpdater implements ItemQualityUpdater {
         return Math.max(MIN_QUALITY, Math.min(quality, MAX_QUALITY));
     }
 
+    private void decreaseSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
     private boolean sellInPositiveOrZero(Item item) {
         return item.sellIn >= 0;
     }
 
-    private boolean qualityDropsToZero(Item item) {
+    private boolean qualityDropsToZeroWhenSellNegative(Item item) {
         return qualityDropsToZeroWhenSellInNegative() && !sellInPositiveOrZero(item);
     }
 
-    private int getFactorForNegativeSellIn(Item item) {
+    private int oneOrTwoIfSellInNegative(Item item) {
         return sellInPositiveOrZero(item) ? 1 : 2;
     }
 }

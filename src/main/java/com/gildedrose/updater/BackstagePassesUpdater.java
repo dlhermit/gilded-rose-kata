@@ -2,7 +2,7 @@ package com.gildedrose.updater;
 
 import com.gildedrose.Item;
 
-public class BackstagePassesQualityUpdater extends AbstractItemQualityUpdater {
+public class BackstagePassesUpdater extends AbstractItemUpdater {
     @Override
     public int getBasicQualityUpdateFactor(Item item) {
         if (item.sellIn < 5) {

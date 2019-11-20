@@ -1,10 +1,11 @@
 package com.gildedrose;
 
+import com.gildedrose.updater.ItemUpdater;
+
 import java.util.Arrays;
 
 class GildedRose {
-    private final ItemSellInUpdaterFactory itemSellInUpdaterFactory = new ItemSellInUpdaterFactory();
-    private final ItemQualityUpdaterFactory itemQualityUpdaterFactory = new ItemQualityUpdaterFactory();
+    private final ItemUpdaterFactory itemUpdaterFactory = new ItemUpdaterFactory();
 
     Item[] items;
 
@@ -18,8 +19,9 @@ class GildedRose {
     }
 
     private void updateQualityAndSellIn(Item item) {
-        itemSellInUpdaterFactory.createSellInUpdater(item).updateSellIn(item);
-        itemQualityUpdaterFactory.createItemQualityUpdater(item).updateQualityForUpdatedSellIn(item);
+        ItemUpdater itemUpdater = itemUpdaterFactory.createItemUpdater(item);
+        itemUpdater.updateSellIn(item);
+        itemUpdater.updateQualityForUpdatedSellIn(item);
     }
 
 }
